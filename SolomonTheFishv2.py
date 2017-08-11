@@ -31,16 +31,17 @@ unicorn.brightness(0.5)
 
 width, height = unicorn.get_shape()
 
-img = Image.open('lofi.png')
+img = Image.open('solomon.png')
 
 try:
     while True:
-        for o_x in range(int(img.size[0]/width)):
-            for o_y in range(int(img.size[1]/height)):
+        for o_y in range(int(img.size[1]/height)):
+            for o_x in range(int(img.size[0]/width)):
 
                 valid = False
-                for x in range(width):
-                    for y in range(height):
+                for y in range(height):
+                    for x in range(width):
+                    
                         pixel = img.getpixel(((o_x*width)+y,(o_y*height)+x))
                         r, g, b = int(pixel[0]),int(pixel[1]),int(pixel[2])
                         if r or g or b:
@@ -48,7 +49,7 @@ try:
                         unicorn.set_pixel(x, y, r, g, b)
                 if valid:
                     unicorn.show()
-                    time.sleep(0.5)
+                    time.sleep(0.1)
 
 except KeyboardInterrupt:
     pass
